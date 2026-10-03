@@ -1,0 +1,102 @@
+\section{The category $\mathbb{H}$}\label{sec:H}
+The purpose of this section is to suggest an answer to the following question:
+\begin{question}
+    What is the free twofold monoidal category on an object $X$ that is both a $\lplus$-monoid and a $\rplus$-comonoid?
+\end{question}
+Note that we are \textbf{not} asking for these structures to be compatible with the interchange map $X\lplus X\rightarrow X\rplus X$. We are interested in this construction, as we expect certain fibrations over it to give a version of the category $2Op$ of twofold operads that generalises the compound pseudo-tensor categories of Beilinson and Drinfeld \cite{BeilinsonDrinfeld}. In particular, we expect it to encode the data of an operad, a cooperad, and compatibilities between these structures.
+
+\begin{definition}
+    Let $f:G\rightarrow H$ be a morphism of cographs. We say it is \textbf{dispersive} if it induces a bijection on vertices. We say it is \textbf{accretive} if $\forall x,y\in G$, $x-y\iff f(x)-f(y)$. If $C$ is a subcategory of $Graph$ we write $C^{acc}$ and $C^{disp}$ for the subcategories of $C$ spanned by accretive and dispersive maps, respectively.
+\end{definition}
+
+Recall the following construction.
+
+\begin{definition}
+    Suppose $C$ is a 1-category\footnote{This definition can be extended to  $\infty-$categories with pullbacks, but we won't need this.} with all pullbacks. Then the \defn{category of spans in $C$}, $Span(C)$, has the same objects as $C$ and a morphism from $x$ to $y$ is given by an object $z\in C$ and morphisms
+\[\begin{tikzcd}
+  & z \arrow[ld, "f"'] \arrow[rd, "g"] &   \\
+x &                                    & y
+\end{tikzcd}\] in $C$, with composition given by pullback.
+\end{definition}
+
+There is a faithful embedding $\iota: C\rightarrow{} Span(C)$ given by sending $f:x\rightarrow y$ to the span 
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQAPEAX1PU1z5CKcqWLU6TVuy69+2PASIAmMRIYs2iEAE8eEmFADm8IqABmAJwgBbJKJA4ISMiEb0ARjEYAFAYuEQSywjAAscEBpGLDAtECgIZg9GNhpQmHooJDBmRkYaHHosRnZIWJ4+ECtbewLnRFVJTXZzfW4gA
+\[\begin{tikzcd}
+  & x \arrow[ld, equal] \arrow[rd, "f"] &   \\
+x &                                          & y
+\end{tikzcd}\]
+
+Similarly, there is a faithful embedding $\iota':C^{op}\rightarrow{} Span(C)$ that sends $f^{op}:y\rightarrow x$ to the span
+\[\begin{tikzcd}
+  & x \arrow[ld, "f"'] \arrow[rd, equal] &   \\
+y &                               & x
+\end{tikzcd}\]
+
+If furthermore $C$ is equipped with a twofold monoidal structure $(C,\lplus,\rplus,1)$, then $C^{op}$ can canonically be equipped with the twofold monoidal structure $(C^{op},\rplus,\lplus,1)$. In this case, there are two canonical twofold monoidal structures on $Span(C)$ for which respectively $\iota$ and $\iota'$ are strong twofold monoidal. We refer to $(Span(C),\lplus,\rplus,1)$ for the former, and $(Span(C),\rplus,\lplus,1)$ for the latter. If $C',C''\subset C$ are wide subcategories of $C$ we write $Span(C,C',C'')$ for the subcategory of $Span(C)$ where the backwards maps are in $C'$ and the forwards maps are in $C''$.
+
+We will use this property of the span construction to our advantage. Recall that $\D$ is the free twofold monoidal category on a monoid for the left product. We can consider it as a subcategory of $Graph^{ir}$, the twofold category of irreflexive graphs, which we note has all pull-backs and is therefore well-defined\footnote{The pullback of $f:X\rightarrow A$ along $g:Y\rightarrow A$ has as set of vertices the pullback $|X|\times_{|A|} |Y|$ taken in $Set$, which also gives the maps $f',g'$ on vertices. Then the universal property is exactly satisfied if two vertices $x,y\in X\times_AY$ are joined by an edge iff $f'(x),f'(y)$ are joined by an edge and $g'(x),g'(y)$ are joined by an edge.}. By the universal property of $\mathbb{D}$, $Span(Graph^{ir})$ contains both a free $\lplus-$monoid and a free $\rplus-$comonoid. These can be identified with 
+$\mathbb{F}\iso Span(\mathbb{F},\mathbb{F}^{id},\mathbb{F})\rightarrow Span(Graph^{ir})$ sending a set to the discrete graph on that many vertices, and $\mathbb{F}^{op}\iso Span(\mathbb{F},\mathbb{F},\mathbb{F}^{id})\rightarrow Span(Graph^{ir})$ sending a function $f^{op}:Y\rightarrow X$ to the span 
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBjCAWzQAoAmgEoQAX1LpMufIRQAmCtTpNW7Lrz4ANEeMnY8BIuVLElDFm0QgoWOBy06lMKAHN4RUADMATjyQKQHAgkcl0QHz9EAKCkMmULdk8QGkZ6ACMYRgAFKQNZEG8sFwALHDFKUSA
+\[\begin{tikzcd}
+        & \delta(X) \arrow[rd] \arrow[ld, "f"'] &         \\
+\tau(Y) &                                     & \tau(X)
+\end{tikzcd}\]
+where $\tau(X)$ is the complete graph on $|X|$ vertices, $\delta(X)$ is the discrete graph on $|X|$ vertices, and the graph maps are induced by their functions on vertices, where the right map is induced by the identity on $X$. We note that these form subcategories $\mathbb{F},\mathbb{F}^{op}\subset Span(Graph^{ir})$. 
+
+Let $\mathbb{H}$ be the smallest sub-twofold monoidal category of $Span(Graph^{ir})$ containing $\mathbb{F}$ and $\mathbb{F}^{op}$ and closed under finite iterations of $\lplus$ and $\rplus.$ By a sub-twofold monoidal category $C'$ of $C$ we mean a two-fold symmetric monoidal functor $C'\rightarrow C$ that is faithful and injective on objects.
+
+\begin{remark}
+    Let us make the following remarks about $\mathbb{H}$.
+    \begin{itemize}
+        \item The map $\mathbb{H}\rightarrow Span(Graph^{ir})$ factors through the map $$Span(\D,D^{acc},D)\rightarrow Span(Graph^{ir}).$$
+        \item Every morphism in $\mathbb{H}$ has the following property: every fiber of the backwards map is sent dispersively to a complete graph by the right map.
+    \end{itemize}
+\end{remark}
+
+Let $Span^\star(\mathbb{D})$ be the category of spans of irreflexive cographs whose backwards maps are accretive and such that the above fiber condition is satisfied.
+
+\begin{remark}
+    Let us remark on why $Span^\star(\mathbb{D})$ is a well-defined subcategory of $Graph^{ir}$. Consider first that since accretives pull back to accretives, the property that the backwards map is accretive is preserved by composition. Similarly, the fiber condition is satisfied. Finally, we should argue that the composition of two such spans of irreflexive cographs has a cograph apex. To see this, let $f:B\rightarrow X$ and $a:A\rightarrow X$ be maps of cographs such that $a$ is accretive, and take their pullback $A\times_XB$ in $Graph^{ir}$ as below.
+
+    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEAdTvAW3gD6ADQBCIAL6l0mXPkIoAjOSq1GLNuwlSQGbHgJEyClfWatEIMZOl65RJceqn1FoRJUwoAc3hFQAMwAnCF4kJRAcCCQAZic1cxA6LQDg0MQyCKjEACY4szY6AHIQagY6ACMYBgAFGX15EECsLwALHGSQIJCkXMyYvJdOkpAyypq6uwsm1vbrTtSkDMiwgYT-YvEKcSA
+\[\begin{tikzcd}\pullback
+A\times_XB \arrow[d, "a'"'] \arrow[r, "f'"] & A \arrow[d, "a"] \\
+B \arrow[r, "f"']                           & X               
+\end{tikzcd}\]
+Now suppose for sake of contradiction that $N$ is an induced subgraph of $A\times_X B$. Since $a'$ is accretive, it cannot be dispersive. However, any morphism out of $N$ is either dispersive or not accretive, which is a contradiction.
+\end{remark}
+
+\begin{proposition}
+$\mathbb{H}$ is equivalent to the category of spans of irreflexive cographs whose backwards maps are accretive, and such that each fiber of the backwards map is sent to a complete graph by the forwards map.
+\end{proposition}
+\begin{comment}
+\begin{proof}
+By our work so far we have a wide faithful functor $\mathbb{H}\xhookrightarrow{}Span^\star (\D)$. Now take an arbitrary span \begin{tikzcd}
+Y & X \arrow[l, "a"'] \arrow[r, "b"] & Z
+\end{tikzcd} in $Span^\star (\D)$. Let $y$ be a vertex of $Y$, By construction, $a^{-1}(y)\iso \underline{n}:=\underline\bigoplus_n1$ for some natural number $n$ and $b(a^{-1}(u))\iso \overline{n}:=\overline\bigoplus_n1$. We first note that the span
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBPEAX1PU1z5CKcqWLU6TVuwA6M5mFgAnRljAxgYbjz4gM2PASIAmChIYs2iEHIi0YKtRoC227hJhQA5vCKgAZkoQzkiiIDgQSGSSluz0IDSM9ABGMIwACgKGwiBKWF4AFjg6AUEhiGERSKYx0tbJPJTcQA
+\[\begin{tikzcd}
+  & \underline{n} \arrow[ld, "a"'] \arrow[rd, "b"] &              \\
+y &                                                & \overline{n}
+\end{tikzcd}\]
+lies in $\mathbb{H}.$ Note $\mathbb{D}$ is the colimit
+$\mathbb{D}_0\rightarrow \mathbb{D}_1\rightarrow \mathbb{D}_2\rightarrow \dots$ in $Cat,$ where $\mathbb{D}_0=\{\emptyset, 1\}\subset Graph$ and $$\mathbb{D}_n=\begin{cases}\text{the full subcategory of } Graph \text{ containing } \mathbb{D}_{n-1} \text{ and closed under } \underline{\oplus}, & n \text{ odd}\\
+\text{the full subcategory of } Graph \text{ containing } \mathbb{D}_{n-1} \text{ and closed under } \overline{\oplus}, & n \text{ even}\\
+\end{cases}$$ We can can therefore proceed by induction on the depth. Suppose $Y'\iso Y_1\underline\oplus Y_2$ with $Y'\subset im(a)\subset Y$ and that we have spans
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBNAfSxAF9S6TLnyEU5UsWp0mrdgA0e-QSAzY8BIgCYK0hizaIQALSV9pMKAHN4RUADMAThAC2SCSBwQkxAQ+duiB5eSFrmfEA
+\[% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBNAfSxAF9S6TLnyEU5UsWp0mrdgA0e-QSAzY8BIgCYK0hizaIQALSV9pMKAHN4RUADMAThAC2SCSBwQkZGQfb0SjSM9ABGMIwACsIaYiCOWFYAFjjKDs5uiB5eSDp+ckahZpR8QA
+\begin{tikzcd}
+    & X_i \arrow[ld, "a_i"'] \arrow[rd, "b_i"] &     \\
+Y_i &                                          & Z_i
+\end{tikzcd}\] in $\mathbb{H}$ for $i=1,2$. Then necessarily $X_1\oplus X_2\subset X$. However $b(X_1\oplus X_2)$ is 
+
+On the other hand, suppose $Y^*\iso Y^1\overline{\oplus}Y^2$ with $Y^*\subset im(a)$ and that we have spans \[
+\begin{tikzcd}
+    & X^i \arrow[ld, "a^i"] \arrow[rd, "b^i"] &     \\
+Y^i &                                         & Z^i
+\end{tikzcd}\] in $\mathbb{H}$. Then necessarily $X^1\oplus X^2\subset X$ and $a|_{X^1\oplus X^2}=a^1\oplus a^2$, while $b|{(X^1\oplus X^2)}=b^1\oplus b^2$ $Y^*\rightarrow Z^*=(a_1,b_1)\overline{\oplus}(a_2,b_2).$
+
+
+
+be careful about the empty maps...... \todo{Finish the proof}
+\end{proof}\end{comment}

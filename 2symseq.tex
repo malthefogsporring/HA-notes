@@ -1,0 +1,26 @@
+\section{2-fold symmetric sequences}
+Consider the category $\mathbf{E}^{disp}$. It is the free twofold symmetric monoidal category on one generator. As a consequence, there is an equivalence
+
+$$LFun^{\lplus,\rplus}\big( Fun(\mathbf{E}^{disp},An),Fun(\mathbf{E}^{disp},An)\big)\simeq Fun(\mathbf{E}^{disp},An)$$
+where $Fun(\mathbf{E}^{disp},An)$ has the twofold Day convolution product with respect to the Cartesian product. (Note the Day convolution swaps orientation.) There is a monoidal product on the left category given by composition of functors, which we can transfer to the right category. We call \textit{the opposite} of this product the (twofold) composition product $\circ$.
+
+Let us unpack the definition of $\circ$. Let $O,U\in 2SymSeq(An):=Fun(\mathbf{E}^{disp},An)$. Under the equivalence $O$ corresponds to the functor $O':\colim よ_{G} \mapsto \colim O^{\oplus_G}$. We therefore have $$O\circ U=U'\circ O'(よ_{1}):O'(よ_{1})=O\simeq \colim よ_{G}\mapsto \colim U^{\oplus_G}$$
+
+First let's unpack the colimit. It is the colimit of  $$\int_{\mathbf{E}^{disp}}O\xrightarrow[]{\pi} \mathbf{E}^{disp}\xrightarrow[]{よ}2SymSeq(An),$$ where $\int_{\mathbf{E}^{disp}}O$ is the category of elements; objects look like pairs $(G,x\in G)$. Since this is a disconnected category, we can split it into a coproduct and a connected colimit. However, this connected colimit is complicated -- it consists of $B\Sigma_n$'s and maps between them that are not necessarily equivariant. In other words, it is some complicated stratified space.
+
+We would like to unpack this colimit more, separating out orbits of some $G-$action, and using the copower on $An$ to say $\colim_{x\in O(G)}Y\simeq O\times Y$. However, we are not sure how to do this yet.
+
+Let us also unpack $U^{\oplus_G}$. This is the Day convolution, so it is the colimit
+$$\colim_{\oplus_G H_i\rightarrow H}\prod_{i\in G} U(H_i).$$
+
+\begin{question}
+    What are monoids for this monoidal product?
+\end{question}
+
+\begin{question}
+    Can we generalize this to symmetric sequences in a general closed symmetric monoidal $C$? Can we remove the closed hypothesis at the cost of turning the product normal oplax?
+\end{question}
+
+\begin{question}
+    Is there a connection to Koszul duality?
+\end{question}

@@ -1,0 +1,121 @@
+\section{Operator categories and their operads}\label{sec:operator-category}
+Let's fix some notation. Let $\mathbb{F}$ be the category of finite sets and functions, $\mathbb{F}_*$ the category of pointed finite sets, $\mathbb{O}$ be the category of ordered finite sets and order-preserving maps, and $\Delta$ the category of non-empty ordered finite sets. Let $\langle n \rangle=\{*,1,\dots,n\} \in F_*$, $\langle n \rangle^\circ=\{1,\dots,n\}\in F$, $[n]=(0,1,\dots,n) \in \Delta$, $[n]^\circ=(1,\dots,n) \in O$.
+\begin{definition}\label{def:inert-active}
+We call a morphism of pointed sets $f:\langle n\rangle\rightarrow \langle m \rangle$ \defn{inert} if the induced function $f:\langle n \rangle\setminus f^{-1}(*)\rightarrow \langle m \rangle ^\circ$ is a bijection, and call $f$ \defn{active} if $f^{-1}(*)=\{*\}$.
+\end{definition}
+The collection of inert and active morphisms in $\mathbb{F}_*$ forms an (orthogonal) factorisation system on $\mathbb{F}_*$ in the sense of \cite{Freyd-Kelly}. Now recall the following definition due to Lurie.
+
+\begin{definition}\label{def:operad}
+    An \defn{$\infty-$operad} is an inner fibration $p:\mathcal{O}^\tensor \rightarrow \mathbb{F}_*$ such that
+    \begin{enumerate}
+        \item Inert morphisms in $\mathbb{F}_*$ admit $p$-coCartesian lifts.
+        \item For each $f:\langle m \rangle \rightarrow \langle n \rangle$ and $p-$coCart mors $C'\rightarrow C_i'$ lying over $\rho^i:\langle n \rangle \rightarrow\langle 1 \rangle$ for $1\leq i \leq n$, the induced map 
+        $$Map_{O^\tensor}^f(C,C')\rightarrow\prod_i Map_{O^\tensor}^{\rho^i \circ f}(C,C_i')$$
+        is a homotopy equivalence.
+        \item The $p$-coCartesian lifts of the inert maps $\rho^i:\langle n \rangle \rightarrow \langle 1 \rangle$ assemble to an equivalence $\mathcal{O}^\tensor_{\langle n \rangle}\simeq \prod_{i}\mathcal{O}_{\langle i \rangle }$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+Let us record the properties of $\mathbb{F}_*$ we used to make this definition.
+\begin{itemize}
+    \item We used the inert-active factorisation system on $\mathbb{F}_*$. Notice $F_*$ is the category of free algebras over the monad $T$ on $\mathbb{F}$ that freely adds a point. The inert-active factorisation system on $\mathbb{F}_*$ can be described entirely using this monad.
+    \item We singled out a special object $\langle 1 \rangle$, with respect to which we gave our Segal condition. In the operator categories story this choice will be unique, but see \cite{ChuHaugseng} for an exploration of what happens when this collection of "elementary objects" is varied.
+    \item We used the fact that $\mathbb{F}_*$ has finite products, and that there are only finitely many inert morphisms $\rho^i:\langle n \rangle \rightarrow \langle 1 \rangle$, so the Segal condition makes sense. In the operator categories story the $\rho^i$ come from a notion of point $i\in\langle n \rangle$ together with the existence of classifying morphisms $\rho^i:\langle n \rangle \rightarrow \langle 1 \rangle$ whose fiber over $1\in \langle 1 \rangle$ is $i.$
+    \item Given a symmetric monoidal category, i.e. a coCartesian fibration $C^\tensor\rightarrow \mathbb{F}_*$, we write $C:=C^{\tensor}_{\langle 1 \rangle}$ for the underlying category.
+\end{itemize}
+\end{remark}
+
+To generalize Lurie's definition, we really want to study $F$ and its canonical monad $T.$
+
+\subsection{Operator categories}
+This section in based on \cite{Bar18}, where the central definition is the following.
+
+\begin{definition}
+    An \defn{operator category} is an essentially small category $\phi$ with finite Hom sets, a terminal object $*$, and fibers.
+\end{definition}
+
+For $I\in\phi$ we define the set of points $|I|$ to be the set $\phi(*,I)$. 
+%An operator morphism is a functor that preserves the terminal object, fibers, and such that $|I|\rightarrow |F(I)|$ is surjective (equivalently bijective).
+
+\begin{example}
+    The categories $\mathbb{F}$ and $\mathbb{O}$ are operator categories.
+\end{example}
+
+%Given two operator categories, we can form the wreath product $\phi\wr \psi$ 
+%with objects $(I,\{W_i\}_{i\in I}\}$ for $I\in \psi$ and $W_i\in \phi$. There is an obvious operator morphism $\phi\wr\psi\rightarrow \psi$. A morphism is a map $I\rightarrow I'$ and for each $i\in I$ a map $W_i\rightarrow W'_(g(i))$. The fiber is ($I_i,(W_j)_g(i))$.
+
+\begin{comment}\begin{definition}
+    A functor of operator categories is called \defn{admissible} if it preserves fibers and the terminal object. It is furthermore called an \defn{operator morphism} if it induces a surjection (equivalently, bijection) on points.
+\end{definition}\end{comment}
+
+\begin{definition}
+    A universal point is a pair $(T,o)$ with $o:*\rightarrow T$ with the property that for every $I\in \phi$ and $i\in |I|$ there exists a characteristic map $\chi_i:I\rightarrow T$ whose fiber over $o$ is $i.$
+\end{definition}
+
+\begin{example}
+    $(\langle 1 \rangle,1)$ is a universal point in $\mathbb{F}.$ $((\bot<0<\top),0)$ is a universal point in $\mathbb{O}.$
+\end{example}
+\begin{definition}
+    An operator category is perfect if it has a universal point and the functor $Fib:\phi_{/T}\rightarrow \phi$ assigning $I\rightarrow T$ to the fiber $I_o$ has a right adjoint.
+\end{definition}
+
+Let $\phi$ be a perfect operator category and $E$ be the right adjoint of $Fib.$ Let $U:\phi_{/T}:\phi$ be the forgetful functor and $T:=U\circ E.$ As Barwick proves, $T$ has the structure of a monad on $\phi$ \cite{Bar18}. Let us describe its unit. First note that $Fib$ has a left adjoint $p$ where $p(C)=(C\rightarrow *\xrightarrow{o} T)$. The adjunctions $(Fib,E)$ and $(p,Fib)$ exhibit $Fib$ as both a localisation and colocalisation, that is, we have natural isomorphisms $\eta:id\rightarrow Fib\circ p$, $\epsilon: Fib\circ E \rightarrow id.$ We then get a natural transformation $p\rightarrow E\circ fib \circ p \rightarrow E$ from the unit of $(Fib,E)$, which composed with the forgetful functor gives a natural transformation $id\iso U\circ p\rightarrow U\circ E := T,$ which we define as the unit of $T$. We appeal to \cite{Bar18} for a description of the multiplication.  %Admissible functors are such that an admissible functor induces a colax monad morphism.
+
+\begin{definition} The Leinster category $\Lambda(\phi)$ is the Kleisli category of $T$. That is, it has the same objects as $\phi$ and $\Lambda(\phi)(I,J)=\phi(I,T(J)).$ Composition is given by $$I\xrightarrow[f]{} TJ\xrightarrow[Tg]{}T^2K\xrightarrow[\mu]{}TK.$$
+\end{definition}
+
+\begin{example}
+    $\mathbb{F}$ is perfect, and its Leinster category is the category of pointed finite sets $\mathbb{F}_*$. $\mathbb{O}$ is perfect, and its Leinster category is $\Delta^{op}.$ 
+    %The isomorphism sends $[n]^\circ \rightarrow Hom([n]^\circ,[1]^\circ)\iso [n]$ as a totally ordered set. This has a factorisation consisting of interval inclusions followed by endpoint preserving maps.
+\end{example}
+
+
+
+%The Leinster category is the opposite of the $\phi-$analogue of the simplicial category.
+
+\begin{comment}\begin{remark}
+    We call a morphism $J\rightarrow I$ in $\Lambda(\phi)$ inert if $J\rightarrow TI$ in $\phi$ has the property that $J\times_{TI} I\rightarrow I$ is an iso. We call it active if $J\rightarrow TI$ factors as $J\rightarrow TJ\rightarrow TI$ for some $Tf.$
+
+    This forms an orthogonal factorisation system on $\Lambda(\phi)$
+\end{remark}\end{comment}
+
+
+
+%\begin{remark}
+%    If $O$ and $U$ are perfect so is $O\wr U.$
+%\end{remark}
+
+\begin{definition}
+    A morphism $I\rightarrow J$ in $\Lambda (\Phi)$ is called \defn{inert} if the corresponding morphism $J\times_{TJ}J\rightarrow I$ is an iso. It is called \defn{active} if it factors as $I\rightarrow TI \xrightarrow{Tf} TJ$. The inert and active morphisms form an orthogonal factorisation system on $\Lambda(\phi)$.
+\end{definition}
+
+\begin{example}
+    In the case of $\phi=\mathbb{F}$ the induced factorisation system on $\mathbb{F}_*$ is exactly the one given by \cref{def:inert-active}.
+\end{example}
+
+The data of an operator category and its canonical monad $T$ is sufficient to construct a Lurie-style theory of operads. For a perfect operator category $\phi$, $I\in \phi$ and $i\in |I|$, denote by $\rho_i$ the inert morphism $I\rightarrow *$ in $\Lambda(\phi)$ corresponding to $\chi_i:I\rightarrow T$ in $\phi$.
+
+\begin{definition}
+Let $\phi$ be a perfect operator category. A \defn{$\phi-$operad} is an inner fibration $p:\mathcal{O}^\tensor\rightarrow \Lambda(\phi)$ such that
+    \begin{enumerate}
+        \item Inert morphismsin $\Lambda(\phi)$ admit $p$-coCartesian lifts.
+        \item For each $f:I\rightarrow J$ in $\Lambda (\phi)$ and $p-$coCart mors $C'\rightarrow C_i'$ lying over $\rho^i:J \rightarrow \{i\}$ for $i\in |J|$ the induced map 
+        $$Map_{O^\tensor}^f(C,C')\rightarrow\prod_i Map_{O^\tensor}^{\rho^i \circ f}(C,C_i')$$
+        is a homotopy equivalence.
+        \item For every $J\in \phi$, the $p-$coCartesian edges lying over the inert morphisms $\rho_i:J\rightarrow \{i\}$ assemble to an equivalence
+        $$O^\tensor_J\simeq \prod_{i\in |J|}O^\tensor_{\{i\}}.$$
+    \end{enumerate}
+\end{definition}
+
+\begin{comment}\begin{definition}
+\todo{Define algebras for a phi-operad}
+\end{definition}\end{comment}
+
+\begin{comment}\begin{example}
+\todo{Talk about terminal O(n)-operads. An more generally that A $\phi\wr \psi$-operad is a $\phi$-operad in the category of algebras over a $\psi-$operad.}
+\end{example}\end{comment}
+
+\begin{remark}
+Barwick also gives a second definition of operad over an operator category which does not require that the operator category is perfect. These are the so-called complete Segal operads. In the case that $\phi$ is perfect, the two definitions are equivalent. \cite{Bar18}
+\end{remark}

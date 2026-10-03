@@ -1,0 +1,70 @@
+\section{(Optional) Semi-factorisation systems}
+    The naming conventions of this section are temporary.
+
+    Suppose you are given ($\infty$)-category $C$ with the data of two wide subcategories $C_L,C_R$ whose intersection is $C^\simeq$ and such that every morphism factors as a left morphism followed by a right morphism.
+
+    It is an \defn{orthogonal factorisation system} if furthermore either of the following equivalent conditions hold
+    \begin{itemize}
+        \item The left class has the left lifting property with respect to the right class.
+        \item The factorisations are unique up to contractible choice.
+    \end{itemize}
+
+Given a morphism $f:X\rightarrow Y$ define the category $Fact(f)$ as the category of factorisations $f=(l,r)$ and morphisms of the factorising object.
+
+We say instead that the data $(C,C_L,C_R)$ is a semifactorisation system if each $Fact(f)$ has an initial object.
+
+\begin{example}
+    $\mathbb{E}$ has an orthogonal factorisation system of the dispersives followed by the accretives, since $\mathbb{E}\rightarrow \mathbb{F}$ is Cartesian (Grothendieck fibration).
+
+    It also has a semifactorisation system of dispersives followed by fibrations. The initial factorisations are those that are thin. To construct it, take the (dispersive, accretive) factorisation, then remove edges in the factorising cograph until the $2-$cell is thin. This is then necessarily initial, as any other (dispersive, fibration) factorisation will be constructed from this by adding edges to the fibers, and this one will factor.
+
+    In other words, the thin factorisation of $f:G\rightarrow H$ is through $\oplus_{H}G_h$
+\end{example}
+
+$\mathbb{E}$ has the extra property that the left class of morphisms has the RCP. That means all the morphisms in $Fact(f)$ are dispersive. We say such semifactorisation categories are left-closed.
+
+Given a semifactorisation category $(C,C_L,C_R)$ we say a $2-$simplex is \defn{thin} iff the two thin replacements of the composite coincide.
+
+\begin{proposition}
+    For cographs, the two definitions of thin coincide. 
+\end{proposition}
+\begin{proof}
+    
+
+    Let us verify the identity $$\oplus_J\oplus_{H_j}G_{h_j}\simeq \oplus_{\oplus_J H_j}G_{h_j}$$
+
+    We then note the first definition of thin is equivalent to the statement
+    $\oplus_{H_j}G_{h_j}\simeq G_j$. Equivalently, $ \oplus_J\oplus_{H_j}G_{h_j}\simeq \oplus_J G_j$.
+
+    The second definition is equivalent to the statement
+    $$\oplus_J G_j\simeq \oplus_{\oplus_J H_j}G_{h_j}$$
+
+    Therefore one is true iff the other is true.
+\end{proof}
+
+\begin{example}
+    There is a factorisation 
+    system on $Cat$ of initial functors followed by left/discrete opfibrations [Steet, Walters]. "Comprehensive factorisation system".
+    A functor $F:C\rightarrow D$ is initial if $F/d$ is connected for each $d.$ Alternatively, $F$ preserves limits.
+    
+    There is also a semi-factorisation system on $Cat$ of initial functors followed by coCartesian fibrations.
+
+    Given $F:C\rightarrow D$, the universal coCartesian replacement is the unstraightening of the functor $F/_-:D\rightarrow Cat$, and the initial functor $$C\rightarrow \int_D F/_-$$ is given by $$(f:c\rightarrow d)\mapsto id_{F(f)}:id_{F(c)}\rightarrow id_{F(d)}.$$
+
+   % This factorisation has the special property that for each $d\in D$, the induced functor on fibers $C_d\rightarrow F/d$ is an equivalence.
+
+   To confirm that $I/{F(c)\rightarrow d}$ is connected, note that $F(c)=F(c)$ is terminal:
+
+   % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADEAKAYwEoQAvqXSZc+QijIBGKrUYs2XPoOEgM2PASJTys+s1aIOPfkJEbx20jOr6FRqCvNitKAEy7b8w8ZinV6i4SyB42cgaKnH6CsjBQAObwRKAAZgBOEAC2SB4gOBBIAMxeEUYAVk4g6VlIOnkFiMXh9iAVZlUZ2Yhk9bUlLViO7dVdPfk5-T6DlSNIACzU44i5dj4Iw51IAKyLDU2rbDgzm4gLvd3UAEYwYI6IALSFPQdG66qziDvndde3Rc-eQ7HGqnXbbSZsaYCCgCIA
+\[\begin{tikzcd}
+F(c) \arrow[d, "id"] \arrow[r, "id"] & F(c) \arrow[d, "j"] & F(e) \arrow[l, "s"] \arrow[ll, "s", bend right] \arrow[d, "id"] \\
+F(c) \arrow[r, "j"]                  & d                   & F(e) \arrow[l, "t"] \arrow[ll, "t", bend left]                 
+\end{tikzcd}\]
+    
+    Given any other factorisation $C\xrightarrow[]{\iota}\tilde{C}\xrightarrow[]{\pi} D$ of $F$ into an initial functor followed by a coCartesian functor, there exists a unique functor $\int_D F/_-\rightarrow \tilde{C}$ making the obvious diagram commute, defined uniquely by the property that it preserves coCartesian edges.
+
+
+    Dually, there is a semi-factorisation system of final functors followed by Cartesian fibrations.
+\end{example}
+
+Let me try to convince you that this is a natural idea.

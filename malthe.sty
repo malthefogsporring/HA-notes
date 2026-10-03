@@ -1,0 +1,118 @@
+%% Malthe
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{mathptmx} % Use Times Font
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{graphicx,caption}
+\usepackage{url}
+\usepackage{tcolorbox}
+%\usepackage{theoremref}
+
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
+%\usepackage{todonotes}
+
+\newcommand{\rprod}{\overline{\otimes}}
+\newcommand{\lprod}{\underline{\otimes}}
+\newcommand{\catname}[1]{{\text{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Cat}{\catname{Cat}}
+\newcommand{\CAT}{\catname{CAT}}
+\newcommand{\Grp}{\catname{Grp}}
+\newcommand{\Fun}{\text{Fun}}
+\newcommand{\Ab}{\catname{Ab}}
+\newcommand{\CatTop}{\catname{Top}}
+\newcommand{\Ring}{\catname{Ring}}
+\newcommand{\hTop}{\catname{hTop}}
+
+\usepackage{enumerate}
+%\usepackage{mathtools}
+%\usepackage{theoremref}
+
+\usepackage{graphicx}
+\usepackage{bm}
+\newcounter{thm}
+\numberwithin{thm}{section}
+
+
+\tikzcdset{scale cd/.style={every label/.append style={scale=#1},
+    cells={nodes={scale=#1}}}}
+\tikzset{%
+    symbol/.style={%
+        draw=none,
+        every to/.append style={%
+            edge node={node [sloped, allow upside down, auto=false]{$#1$}}}
+    }
+}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[thm]{Theorem}
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{question}[thm]{Question}
+\newtheorem{exercise}[thm]{Exercise}
+
+\newtheorem{proposition}[thm]{Proposition}
+\newtheorem*{answer}{Answer}
+
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+%\theoremstyle{remark}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{example}[thm]{Example}
+
+\bibliographystyle{amsalpha}
+
+\newcommand{\dsum}{\oplus}
+\newcommand{\iso}{\cong}
+\newcommand{\homeo}{\cong}
+\newcommand{\homotopic}{\simeq}
+\newcommand{\colim}{\text{colim}}
+\newcommand{\wlim}[1]{\text{lim}^{#1}}
+
+
+
+\newcommand{\defn}[1]{\textbf{#1}}
+\newcommand{\cat}[1]{\mathcal{#1}}
+\newcommand{\RP}[1]{\mathbb{RP}^{#1}}
+\newcommand{\CP}[1]{\mathbb{CP}^{#1}}
+\newcommand{\HP}[1]{\mathbb{HP}^{#1}}
+\newcommand{\Top}[1]{\mathbf{Top}_{#1}}
+\newcommand{\Mod}[1]{\ \mathrm{mod}\ #1}
+\newcommand{\Zmod}{\mathbb{Z}/2\mathbb{Z}}
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\cotensor}{\pitchfork}
+\newcommand{\Vect}{\catname{Vect}}
+\newcommand{\pullback}{\arrow[dr, phantom, "\scalebox{1.5}{\color{black}$\lrcorner$}" , very near start, color=black]
+}
+\newcommand{\cartesian}{\arrow[dr, phantom, "\scalebox{1.5}{\color{black}$\lrcorner$}" , very near start, color=black]
+}
+\newcommand{\inclusion}{\xhookrightarrow{}}
+\usepackage{xcolor}
+\newcommand\myworries[1]{\textcolor{red}{#1}}
+
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{prop}{Proposition}{Propositions}
+
+\newcommand{\lplus}{\underline{\oplus}}
+\newcommand{\rplus}{\overline{\oplus}}
+\usetikzlibrary{decorations.markings}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\E}{\mathbb{E}}
+
+\usepackage{luatexja}

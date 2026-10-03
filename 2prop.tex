@@ -1,0 +1,40 @@
+\section{Twofold $\infty$-operads}
+The goal of this section is to formulate a $2-$fold version of the equivalence of $Op_\infty$ with a full subcategory of the category $PROP_\infty$ of $\infty-$properads \cite{HaugsengKock}. We will start by giving an analogue of the notion of PROP.
+
+Any symmetric monoidal category $(C,\tensor)$ can be canonically viewed as a twofold monoidal category where the two tensor products are the same. The following lemma makes this statement precise.
+
+\begin{prop}
+    Let $\pi:C^\tensor \rightarrow F_*$ be a symmetric monoidal category. Let $f:\mathbf{E_*}\rightarrow \mathbf{F_*}$ be the functor on points as in \cite{Bar18} Define $C^{\tensor,\tensor}$ as the pullback
+\[
+\begin{tikzcd}
+{C^{\tensor,\tensor}} \pullback \arrow[d, "\pi'"'] \arrow[r, "f'"] & C^\tensor \arrow[d, "\pi"] \\
+\mathbf{E_*} \arrow[r, "f"]                                      & \mathbf{F_*}                       
+\end{tikzcd}\]
+    Then $\pi'$ is a twofold monoidal category.
+    \label{lem:twofold-from-onefold}
+\end{prop}
+\begin{proof}
+    As coCartesian fibrations are preserved by pullbacks, $\pi'$ is a coCartesian fibration. It also satisfies the Segal condition as $\pi$ does.
+
+    Now let $s,z:\mathbf{F_*}\rightarrow \mathbf{E_*}$ be the inclusions of discrete and completely disconnected graphs, and note they are sections of $f.$ This in turn induces functors $s',z':C^\tensor \rightarrow C^{\tensor,\tensor}$ which are sections of $f'$. It is then not hard to see $s',z'$ are pull-backs of $s,z$ along $\pi'$ respectively.
+\end{proof}
+
+Let $\pi:Cat_\infty^{\times,\times}\rightarrow E_*$ be the twofold monoidal category corresponding to $(Cat_\infty,\times,1)$ via the construction in \cref{lem:twofold-from-onefold}. Let us remark that a twofold monoidal category $C^{\underline{\oplus},\overline{\oplus}}$ is the same data as section of $\pi:Cat_\infty^{\times,\times}\rightarrow E_*$. We can therefore define $2CMon(Cat_{\infty})$ as the full subcategory of the category of sections of $\pi:Cat_\infty^{\times,\times}\rightarrow E_*$ spanned by twofold functors between twofold monoidal categories. (Is this really a category and not a 2-category?)
+
+
+We want to give an analogue of $Sym(X)$, the free $E_\infty-$space on an anima $X.$
+
+%Note that SymMon(Cat) is presentable by Corollary 2.7.5 of Lurie (DAG 3): For any symmonoidal category $(C,\tensor)$ whose tensor product commutes with small colimits in each variable, the category of algebras in C is presentable. 
+
+\begin{prop}
+    $2CMon(Cat_\infty)$ is presentable and the forgetful functor $U:2CMon(Cat_\infty)\rightarrow Cat_\infty$ preserves limits and filtered colimits.
+\end{prop}
+\begin{proof}
+    
+\end{proof}
+
+It follows that $U$ has a left adjoint, which we call $2Sym$.
+
+\begin{remark}
+    There is no interesting notion of a free twofold symmetric monoidal anima on an anima. Indeed, the left adjoint to $U:2CMon(An)\rightarrow An$ takes an anima $X$ to $Sym(X)^{\tensor,\tensor}$ in the sense of \cref{lem:twofold-from-onefold}, where $\tensor$ is the monoidal structure on $Sym(X)\in CMon(An)$. (Justify???)
+\end{remark}

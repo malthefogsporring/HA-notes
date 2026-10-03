@@ -1,0 +1,80 @@
+\section{Operads from monoidal categories}
+\label{sec:envelope}
+The purpose of this section is to summarize results of Haugseng-Kock which allow one to describe the operads (i.e. $\mathbb{F}$-operads) as certain symmetric monoidal categories equipped with a monoidal functor to $\mathbb{F}$. We will describe the theory for (symmetric) operads, i.e. $\mathbb{F}$-operads \cite{HaugsengKock}. The theory can also be extended to a large class of algebraic patterns\footnote{Specifically those that are \textit{sound} and \textit{extendable}} \cite{Barkan-Haugseng-Steinebrunner}.
+
+The category of operads $Op$ is the subcategory of $Cat_{\infty/\mathbb{F}_*}$ spanned by operads and morphisms between them that preserve cocartesian lifts of inerts. Recall Lurie's definition of a symmetric monoidal category as a coCartesian fibration $p:C^{\tensor}\rightarrow \mathbb{F}_*$, and that a symmetric monoidal functor is a morphism in $Cat_{\infty,/\mathbb{F}_*}$ between symmetric monoidal categories that preserves all coCartesian edges. In this formulation, a symmetric monoidal category is in particular operad, and a monoidal functor is in particular an operad morphism, giving a faithful functor $U: SMonCat\xhookrightarrow{} Op$. This functor has a left adjoint, given by the \defn{symmetric monoidal envelope}. Informally, it takes an operad $\mathcal{O}^\tensor$ to a the category $\mathcal{O}^\tensor_{act}$ of active morphisms in $\mathcal{O}^\tensor$ with the symmetric monoidal product given by concatenation, which is sensible due to conditions 1 and 2 of \cref{def:operad}. Here, an active morphism in $O^\tensor$ means a morphism lying over an active morphism in $\mathbb{F}_*$.
+
+To make the construction precise, define $Act(\mathbb{F}_*)$ as the full subcategory of $Ar(\mathbb{F}_*):=Fun(\Delta^1,\mathbb{F}_*)$ whose objects are active morphisms, and let \newline$s,t:Act(\mathbb{F}_*)\rightarrow \mathbb{F}_*$ denote the source and target morphisms, respectively. Define the envelope of $\pi:\mathcal{O}^\tensor\rightarrow \mathbb{F}_*$ to be the pullback
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBpiBdUkANwEMAbAVxiRAB12BbOnACwBGA4ADEAvgH0AVCDGl0mXPkIoyABiq1GLNgHkAepxwwwcCACdZ8kBmx4CRNeU31mrRCACCAYxwAKTh5+IVFJKQBKKwU7ZUdSDWpXHQ8AUTAaP11w-WAjEzNzMVlNGCgAc3giUAAzcwguJDIQHAgkJy03NjQokFr6pAAmaha2xO13EAQ5GrqGxABmYdbEAene2aRF5uXiMQoxIA
+\[\begin{tikzcd}\cartesian
+Env(O)^{\tensor} \arrow[d] \arrow[r] & \mathcal{O}^\tensor \arrow[d, "\pi"] \\
+Act(\mathbb{F}_*) \arrow[r, "s"]     & \mathbb{F}_*            
+\end{tikzcd}\]
+equipped with the functor to $\mathbb{F}_*$ induced by $t$. To see that underlying category of $Env(\mathcal{O})^{\tensor}$ is $\mathcal{O}^\tensor_{act}$, note that there is a unique active map from any object in $\mathbb{F}_*$ to $\langle 1 \rangle$, so an object of $Env(\mathcal{O})^{\tensor}_{\langle 1 \rangle}$ is just an object $X$ of $\mathcal{O}^\tensor$ (with the canonical active map $!a:\pi(\mathcal{O}^\tensor)\rightarrow \langle 1 \rangle$), and a morphism from $X$ to $Y$ is a morphism $f:X\rightarrow Y$ and a commutative triangle
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAB120sAKADQCUIAL6l0mXPkIoATOSq1GLNp248AmkNHjseAkQCMpAwvrNWiDuwZ0wAcwYwABAaecATrYethCmFDt4IlAAM3cIAFskMhAcCCQ5RXM2AEI6EGobACMYBgAFCT1pEHcsOwALHBExEDDIpCNY+MREs2VLNOrQ8KjEGLiG6jaLKzUQrQphIA
+\[\begin{tikzcd}
+\pi(X) \arrow[rd, "!a"'] \arrow[rr, "\pi(f)"] &                   & \pi(Y) \arrow[ld, "!a"] \\
+                                              & \langle 1 \rangle &                        
+\end{tikzcd}\]
+which implies $\pi(f)$ is active.
+
+We note this construction gives a functor $Env:Op\rightarrow Cat_{\infty,/\mathbb{F}_*}$. By \cite{HA}[2.2.4] this factors through the subcategory $SMonCat$ and is a left adjoint to the forgetful functor $U:Op\rightarrow SMonCat$, which we record as the following theorem.
+
+\begin{theorem}[\cite{HA} 2.2.4.4 and 2.2.4.9]\label{thm:env-functor}
+The construction of the envelope gives a functor $Env:Op\rightarrow SMonCat$ left adjoint to $U:SMonCat\rightarrow Op$.
+\end{theorem}
+
+\begin{remark}
+The cocartesian lifts of $\pi:Env(\mathcal{O})^\tensor\rightarrow \mathbb{F}_*$ are identified as follows: let $\pi:\mathcal{O}^\tensor\rightarrow \mathbb{F}_*$ be an operad, let $\phi:\langle n \rangle \rightarrow \langle m \rangle$ be a morphism in $\mathbb{F}_*$ and let $(X,\alpha:\pi(X)\rightarrow \langle n \rangle)\in Env(\mathcal{O}^\tensor)$ be a lift of $\langle n\rangle$. Remark that $\phi\circ\alpha$ has a unique factorisation as an inert morphism $i:\pi(X)\rightarrow K$ followed by an active morphism $a:K\rightarrow \langle m \rangle$, as in the following diagram
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQAdDx+sAc0YwABGCFcATrwFsAvqXSZc+QinIVqdJq3Zce-QUIC2YjpP2z5IDNjwEiZYhoYs2iThzRYAFAA0AlCByCjbKRGqONM7abgDSgRowUHzwRKAAZuIQhkgATDQ4EEgAzJFariBYgZYZWcX5hYhqmi7s9FXpmdmIZCAFSE1R5WntIDVdeb0NPYM6HExoABZtNDwARjCMAAqKtiog4lh8CzjxMkA
+\[\begin{tikzcd}
+\pi(X) \arrow[r, "i"] \arrow[d, "\alpha"'] & K \arrow[d, "a"]  \\
+\langle n \rangle \arrow[r, "\phi"]           & \langle m \rangle
+\end{tikzcd}\]
+Let $\phi':X\rightarrow K'$ be the $\pi-$coCartesian edge lifting $i$. Then $\phi'$ together with the above commutative square is the $t-$cocartesian lift of $\phi$. Let us unpack a particular case of the $t$-coCartesian condition. Suppose we are given another morphism in $Env(\mathcal{O})^\tensor$ out of $X$ as follows
+
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAA0QBfU9TXfIRQBGclVqMWbAJrdeIDNjwEiZYePrNWiEAB1daLAAp2ASjl8lgoqPXVNUnfsNHp5npYEqUZAEwbJbT1dBjowAHMGGAACMGj9ACcwyNYPBX5lIWRRf3tAtn1QiKjogGt43STi1PEYKHD4IlAAMwSIAFskMhAcCCRRCS02ZosQVo6kX2pepABmPKGnA2Nm93lxzsQAFmm+xABWBccQcNGNyd2kHcHj-UY0AAs6aIByM7bN+Z69w5ugu4Yj2eLzeXAoXCAA
+\[\begin{tikzcd}
+X \arrow[r, "\psi"]                                 & Y                             \\
+\pi(X) \arrow[r, "\pi(\psi)"] \arrow[d, "\alpha '"] & \pi(Y) \arrow[d, "\alpha ''"] \\
+\langle n \rangle \arrow[r, "g"]                 & \langle k \rangle            
+\end{tikzcd}\] as well as a morphism $h:\langle m \rangle \rightarrow \langle k \rangle$ such that $g=h \circ f $. Then since (inert,active) is an orthogonal factorisation system, there is a unique lift $\theta$ of the following square
+\[\begin{tikzcd}
+\pi(X) \arrow[d, "i"] \arrow[r, "\pi(\psi)"]         & \pi(Y) \arrow[d, "\alpha''"] \\
+K \arrow[r, "g\circ a"] \arrow[ru, "\theta", dashed] & \langle k \rangle           
+\end{tikzcd}\]
+Hence since $\phi'$ is $\pi-$coCartesian, there is a lift $\theta':K'\rightarrow Y$ such that $\theta\circ \phi\simeq \psi$. The morphism $\theta'$ together with the commutative square 
+\[% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGkQBfU9TXfIRQBGclVqMWbADrS0WABQBNAJTdeIDNjwEio4ePrNWiELIZ0wAcwYwABAGs7sgE6WbrHn22CiZA9RGUqbm7rZ2ALbO0m7WttziMFBW8ESgAGYuEBFIoiA4EEgATIGSJmbSjGgAFnQA5HXqGVk5iGT5hYh5QeWyONUwOHRNIJnZSO0FSADM1BYARjAMAAr8OkIgtuk4IKXGbMNeoy0z1FOIJRL7ptUJXEA
+\begin{tikzcd}
+K \arrow[r, "\theta"] \arrow[d, "a"] & \pi(Y) \arrow[d, "\alpha''"] \\
+\langle m \rangle \arrow[r, "h"]     & \langle k \rangle           
+\end{tikzcd}\]
+is then the required lift of $h$.\label{rmk:cocartesian-lift}
+\end{remark}
+\begin{example}\label{ex:envelope-of-F}
+For the terminal operad $id:\mathbb{F}_*\rightarrow \mathbb{F}_*$ we have \newline $Env(\mathbb{F}_*)\equiv Act(\mathbb{F}_*)$. We can identify its underlying category with $\mathbb{F}\simeq Act(\mathbb{F}_*)_{\langle 1 \rangle}$ and notice that the monoidal product is given by disjoint union of finite sets.
+\end{example}
+
+\cref{ex:envelope-of-F} demonstrates that $Env$ can be upgraded to a functor \newline$Env':Op\rightarrow SMonCat_{/{\mathbb{F}^{\sqcup}}}.$ On the other hand, given a monoidal functor $C^\tensor\rightarrow \mathbb{F}^{\sqcup}$, one can apply the forgetful functor to $Op$ then pull it back along the unique monoidal functor $\mathbb{F}_*\rightarrow \mathbb{F}^\sqcup$ in $Op$ to get an operad $U'(C^\tensor)\rightarrow \mathbb{F}_*$. This construction assembles to a functor $U':SMonCat_{/{\mathbb{F}^\sqcup}}\rightarrow Op$.
+
+\begin{theorem}[\cite{HaugsengKock}]\label{thm:haugseng-kock}
+The functor $Env'$ is left adjoint to $U'$. Furthermore, $Env'$ is fully faithful. 
+\end{theorem}
+\begin{proof}
+The adjunction $(Env',U')$ is a special case of \cite{HTT}[5.2.5.1]. The unit of $Env\dashv U$ has components given by $i_O$ in the following diagram, where every square is a pull-back square. It is well-defined because $id_{\mathbb{F}_*}\simeq s\circ id_-$. 
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZARgBoAGAXVJADcBDAGwFcYkQBRMWgCgHkAlCAC+pdJlz5CKcqWLU6TVuwA6KgLb0cACwBGu4ADFhAfQBUIsSAzY8BImXk0GLNohABBAMY4eazTr6RqZmQqLitlJEAExyCi7K7v5aegbG5pYRkvYosVTOSm4gfJnWEnbSyLL5iq7sJcIKMFAA5vBEoABmAE4Q6kgALDQ4EEgAzOEgPX1IsSAj4wV17giT0-2IsvOjiNFrvRtbC4gD+zOIZNuzS4kgWFAmwAC0wqXrSACswzvEZxtfV02NyKWBMDUowiAA
+\[\begin{tikzcd}\cartesian
+\mathcal{O}^\tensor \arrow[d] \arrow[r, "i_O"]     & Env(\mathcal{O})^\tensor \arrow[d] \arrow[r]       & \mathcal{O}^\tensor \arrow[d]  \\
+\mathbb{F}_* \arrow[r, "id_{-}"] & Act(\mathbb{F}_*) \arrow[r, "s"] & \mathbb{F}_*
+\end{tikzcd}\]
+By the proof of \cite{HTT}[5.2.5.1], the induced unit of $Env'\dashv U'$ has components given by the induced arrow in the following diagram
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAJgBoBGAXVJADcBDAGwFcYkQAdDgW3pwAsARoOAAxAL4B9AFQhxpdJlz5CKMsWp0mrdgEEAxjgAUXXgOFip0gJRyFIDNjwEi5UhpoMWbRCACiYLRGAPK28opOKq4Uml46vqZ8QiISMlx43PCSwAbGieYpVtYBQaHidhHKLigADKQ1sdo+IMFymjBQAObwRKAAZgBOENxIZCA4EEjk4SCDw0h145OI0-ZzI4gAzDQTozPrSNtLC-tDGwAsO8uLcc1oIDSCMGBQhzWn84iXx4hjt+xYSStR7PV6IAC0m0WjHoT0YAAUlM5VCABlhOvwcBVZmckN9dlsaIwsGBmlAIDgcB02uIgA
+\[\begin{tikzcd}
+\mathcal{O}^\tensor \arrow[rrd, "p", bend left] \arrow[rdd, "i_O"', bend right] \arrow[rd, dotted] &                                                                  &                        \\
+                                                                                 & \mathbb{F}_*\times_{Act(\mathbb{F}_*)}Env(\mathcal{O})^\tensor \arrow[d] \arrow[r] & \mathbb{F}_* \arrow[d] \\
+                                                                                 & Env(\mathcal{O})^\tensor \arrow[r]                                                 & Act(\mathbb{F}_*)     
+\end{tikzcd}\]
+which by what we have just shown is an equivalence. We conclude by recalling a left adjoint is fully faithful if and only if its unit is an equivalence.
+\end{proof}
+
+Our hope is to use \cref{thm:haugseng-kock} as a definition for twofold operads, that is, to identify the comonad on the category of twofold symmetric monoidal categories corresponding to $Env\circ U$. Alternatively, Haugseng and Kock also give an explicit characterization of the subcategory of $SMonCat_{/{\mathbb{F}^\sqcup}}$ cut out by $Env'$ in \cite{HaugsengKock}[2.4.6] which we may attempt to replicate.

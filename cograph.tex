@@ -1,0 +1,150 @@
+\section{Cographs}\label{sec:cograph}
+In this section we will describe the category of reflexive cographs and use it to give a definition of twofold symmetric monoidal category. For us, a graph is a pair $(V,E)$ where $V$ is a finite set of vertices, and $E\subset V\times V$ is a set of edges between vertices satisfying the property $$(x,y)\in E \implies (y,x)\in E, \forall x,y\in V.$$ In particular, we only consider graphs with at most one edge between vertices. In other words, a graph is the same thing as a finite symmetric relation. If $a,b$ are vertices connected by an edge we will write $a-b$. Otherwise, we will write $a\not - b$. A graph morphism is a function of vertices that preserves edges. The category of graphs and graph morphisms will be denoted $Graph.$
+
+\begin{definition} Let $G$ be a graph. An \defn{induced subgraph} of $G$ is a graph $H$ and a graph morphism $i:H\xhookrightarrow{} G$ that is injective on vertices and bijective on edges onto its image. We say $G$ is \defn{free from} $H$ if $H$ cannot be given the structure of an induced subgraph of $G$.
+\end{definition}
+
+\begin{definition}
+Given a graph $G=(V,E)$, its dual graph $G^{\vee}$ is the pair $(V,V\times V\setminus E)$. 
+\end{definition}
+
+\begin{definition}
+Denote by $P_4$ the graph $a-b-c-d$.
+\end{definition}
+
+\begin{definition}
+    A \defn{cograph} is a graph free from $P_4$. A \defn{reflexive cograph} is a cograph whose underlying relation is reflexive, and an \defn{irreflexive cograph} is a cograph whose underlying relation is irreflexive. We denote by $\mathbb{G}$ the full subcategory of cographs, $\mathbb{E}$ the full subcategory of reflexive cographs, and $\mathbb{D}$ the full subcategory of irreflexive cographs.
+\end{definition}
+
+\begin{remark}
+By definition, any induced subgraph of a cograph is itself a cograph.
+\end{remark}
+
+There are two monoidal products on $Graph$: the disjoint union of graphs $\lplus$ given by $$(V,E)\lplus (V',E')=(V\sqcup V',E\sqcup E')$$ and the join $\rplus$ given by $$(V,E)\rplus (V',E')=\big(V\sqcup V',E\sqcup E'\sqcup (V\times V')\sqcup (V'\times V)\big),$$ where all inclusions are canonical under the isomorphism $$(V\sqcup V')\times (V\sqcup V')\iso (V\times V)\sqcup (V'\times V')\sqcup (V\times V')\sqcup (V'\times V).$$ These monoidal products have the same unit, the empty graph $\emptyset.$ $\mathbb{G}$, $\mathbb{E}$, and $\mathbb{D}$ are all closed under $\lplus$ and $\rplus.$
+
+\begin{lemma}
+    The dual of a cograph is a cograph.
+\end{lemma}
+
+\begin{proof}
+Suppose for sake of contradiction $G$ is a cograph and $P_4\xhookrightarrow{} G^\vee$ is an induced subgraph. In other words, we have $a,b,c,d\in G$ are such that $a\not - b, b\not - c, c\not - d$ but $a-c,b-d,a-d$. This implies $c-a-d-b$ is an induced subgraph of $G$, which is a contradiction.
+\end{proof}
+
+\begin{definition}
+We say a graph is \defn{disconnected} if it can be written as a disjoint union of two non-empty graphs. A graph is \defn{connected} if it is not disconnected. We say a graph is \defn{totally disconnected} if $a-b\implies a=b$. It is \defn{complete} if $a\neq b\implies a-b$.
+\end{definition}
+
+\begin{lemma}
+    A cograph $G\in \mathbb{G}$, where $|G|>1$, is connected if and only if $G^{\vee}$ is disconnected.
+\end{lemma}
+
+\begin{proof}
+    The if direction is trivial. We will prove the only if direction by induction on the size of $G$. The statement is clear when $|G|=2$. Suppose the statement holds for graphs of size $k$, but there exists a connected graph $G$ of size $k+1$ whose complement is also connected. Let $x\in G$ and consider the subgraph $G\setminus \{x\}$. By assumption either this graph or its dual is disconnected, so WLOG assume $G\setminus \{x\}$ is disconnected. We remark that a cograph is connected if and only if for every pair $x,y$ of vertices there exists a vertex $z$ such that $x-z-y$. Now choose $y\in G\setminus \{x\}$. Let $z$ be in a different connected component to $y$. It follows that $y-x-z$ in $G$. Now let $w-y$. It follows by the cograph condition that $w-x$. Repeating this argument shows every vertex in the connected component of $y$ is related to $x$. But then $\{x\}$ is a disconnected component in $G^{\vee}$, which is a contradiction.
+\end{proof}
+
+We combine above lemmas to show the following.
+
+\begin{proposition}\label{prop:cograph-description}
+    $\mathbb{G}$ is the smallest subcategory of $Graph$ containing the two 1-vertex graphs, and closed under finite disjoint unions and joins. $\mathbb{E}$ is the smallest subcategory of $Graph$ containing the reflexive 1-vertex graph and closed under finite disjoint unions and joins. $\mathbb{D}$ is the smallest subcategory of $Graph$ containing the irreflexive 1-vertex graph and closed under finite disjoint unions and joins.
+\end{proposition}
+
+\cref{prop:cograph-description} is the main motivation for considering cographs. It shows, in particular, that the objects of $\mathbb{E}$ are the finite expressions that can be written using one variable and two products with the same unit.
+
+$\mathbb{E}$, $\mathbb{G}$, and $\mathbb{D}$ are twofold monoidal categories in the sense of \cite{Balteanu-Fiedorowicz-Schwaenzl-Vogt}. We also notice that that the functor $\tau:\mathbb{F}\rightarrow \mathbb{E}$ which sends a set $X$ to the complete graph on $|X|$ vertices is fully faithful, and monoidal with respect to the product $\sqcup$ on $\mathbb{F}$ and $\rplus$ on $\mathbb{E}$. Similarly, the functor $\delta:\mathbb{F}\rightarrow \mathbb{D}$ which sends a set $X$ to the totally disconnected graph on $|X|$ vertices is fully faithful and monoidal with respect to $\lplus$ on $\mathbb{D}$. The following proposition follows essentially by inspection, a full proof will appear in future work. We furthermore claim that the universal property of $\mathbb{D}$ and $\mathbb{E}$ can be extended to twofold monoidal $\infty$-categories, as defined in \cref{sec:twofold-monoidal}
+
+\begin{proposition} $\mathbb{E}$ is the free twofold monoidal category on a monoid for the left product. $\mathbb{D}$ is the free twofold monoidal category on a monoid for the right product.\label{lemma:E-universal-property}
+\end{proposition}
+
+\begin{remark} $\mathbb{E}$ is equivalently the free twofold monoidal category on a monoid for both products, compatibly with the interchange map. This is because a monoid $X$ for the right product induces a monoid on the left product via the interchange map $X\lplus X\rightarrow X\rplus X$. On the other hand, a compatible monoid for both products is uniquely determined by the monoid for the right product.
+\end{remark}
+
+\subsection{Coloured cographs}
+We can generalize the above construction to handle situations where there are more than two tensor products. We fix a poset $P$, whose objects we call colours, and make the following definition.
+
+\begin{definition}
+    A $P-$coloured graph is a complete graph whose edges are labeled by objects of $P$. We call the objects of $P$ colours. A $P-$coloured graph morphism is a graph morphism that preserves the poset structure on colours. Denote the category of finite $P-$graphs and $P-$morphisms by $Graph_P$. An $n-$coloured graph is any $P-$coloured graph where $|P|=n.$ Letting $G$ be a $P-$coloured graph, $x\in P$ and $a,b\in G$, we write $a-_xb$ if $a$ and $b$ are connected by an $x$-coloured edge.
+\end{definition}
+
+\begin{remark}
+    A graph is exactly a coloured graph over the poset $0<1.$
+\end{remark}
+
+Any category of $n-$coloured graphs has $n$ symmetric monoidal products given by coloured joins, with each monoidal unit given by the empty graph. 
+%Let $P$ be any poset with a terminal object \textbf{black.} Let $\mathbb{E}_P$ be the smallest full subcategory of $Graph_P$ consisting of \textbf{black-}reflexive graphs, containing the 1-vertex graph, and closed under all finite coloured joins.
+For every poset $P$ and object $x\in P$ we have a functor $p_x:Graph_P\rightarrow Graph$ which sends a coloured graph $G$ to the graph with the same vertices as $G$ and where $x-y$ iff $x-_x y$. We say a graph $G$ is $x-$connected if $p_xG$ is connected, and $x-$disconnected if $p_xG$ is disconnected.
+
+\begin{definition} 
+Let the category of $P$-cographs $\mathbb{G}_P$ be the smallest subcategory of $Graph_P$ containing every $1-$vertex graph and closed under finite coloured joins. Call a $P$-graph a $P$-cograph if it lies in this subcategory.
+\end{definition}
+
+\begin{proposition}\label{prop:coloured-cograph}
+    A $P-$coloured graph $G$ is a $P-$cograph if and only if $p_x(G)$ is a cograph for every $x\in P$, and $G$ is free from any graph with three vertices and three different coloured edges.
+\end{proposition}
+\begin{proof}
+     We may assume there are at least two colours. The only if direction is clear. For the if direction we proceed by induction on the size of the graph. The statement is clear for graphs with $2$ or fewer vertices. Now suppose you have a graph $G$ where $|G|>2$ which is not a join in any colour. Let $x\in G$, note that $G\setminus \{x\}$ can be written as a coloured join of non-empty graphs by assumption, and for convenience call this colour \textbf{blue} or $b$. Let $y,z$ be vertices in distinct \textbf{blue-}disconnected components. Since $G$ is \textbf{blue}-disconnected and $p_{b}(G)^\vee$ is a cograph, we know that $y-x-z$ are connected via co\textbf{blue} colours. By the triangle assumption, $x-_r y-_rz$ for some other colour $r$ we call \textbf{red.} By the same argument, if $w$ is any other vertex \textbf{blue-}disconnected from $y$ then $x-_rw$. Now let $a-y$ via a co\textbf{blue} colour. Since co\textbf{blue} is a cograph and $a-y-x-z$, we must have $a-_rx$. By iterating, we conclude any vertex in the \textbf{blue}-coconnected component of $y$ is \textbf{red-}connected to $x$. But then $G$ is a \textbf{red}-join, which is a contradiction.
+\end{proof}
+
+\begin{remark}\cref{prop:coloured-cograph} allows us to give explicit descriptions of coloured versions of $\mathbb{E}$ and $\mathbb{D}$. In particular, letting $P$ be a poset and $x\in P$, let $\mathbb{E}_{P,x}$ be the smallest subcategory of $Graph_P$ containing the $x-$reflexive 1-vertex graph and closed under finite coloured joins. The categories $\mathbb{E}_{P,x}$ have universal properties analogous to \cref{lemma:E-universal-property}, which we claim are universal both as $1$-categories and $\infty$-categories.
+\end{remark}
+
+\begin{proposition}
+Let $P=1<\dots<n$ be a finite totally ordered poset. Then the category $\mathbb{E}_{P,i}$ is an $n$-fold monoidal category in the sense of \cite{Balteanu-Fiedorowicz-Schwaenzl-Vogt}, and is the free $n$-fold monoidal category on a monoid for the $i^{th}$ monoidal product.
+\end{proposition}
+
+\section{Twofold monoidal categories}\label{sec:twofold-monoidal}
+Note that $\mathbb{E}$ is a perfect operator category. We can identify its Leinser category $\mathbb{E}_*:=\Lambda(E)$ with the category of reflexive cographs and partial maps, where a partial map from $G$ to $H$ is is an induced subgraph $G'\xhookrightarrow{}G$ and a graph morphism $f:G'\rightarrow H$\footnote{Equivalently, we can see it as the category of pointed reflexive cographs and pointed graph morphisms, where a pointing on a reflexive cograph is a choice of vertex connected to every other vertex by an edge, and a pointed graph morphism is a graph morphism that preserves the specified vertex.}. The induced inert-active factorisation on $\mathbb{E}_*$ can be described as follows: a partial graph morphism $(G'\subset G, f:G'\rightarrow H)$ is inert if $f$ is a graph isomorphism. It is active if $G'=G$.
+
+Let $\delta,\tau:F\rightarrow E$ be the functors that identify a finite set $X$ with, respectively, the completely disconnected and the complete cograph on $|X|$ vertices. We will also denote by $\delta,\tau$ the induced functors $\mathbb{F}_*\rightarrow \mathbb{E}_*.$ In upcoming work, Barwick gives the following definition of a 2-fold monoidal category \cite{Bar24}:
+
+\begin{definition}
+    A \defn{2-fold symmetric monoidal category} is a functor $p:C^{\lplus,\rplus}\rightarrow E$ satisfying the following conditions:
+    \begin{enumerate}
+        \item $p$ is a locally coCartesian fibration.
+        \item The locally $p-$coCartesian edges over inert edges are $p$-coCartesian,
+        \item For each cograph $G$ and $X\in C^{\lplus,\rplus}_G$ , the locally $p-$coCartesian lifts \newline$\{p_i^*:X\rightarrow X_i\}_{i\in |G|}$ of the inert morphisms $\{p_i:G\rightarrow 1\}_{i\in |G|}$ assemble to an equivalence $X\simeq \prod_{i\in G} X_i$,
+        \item Pulling back $p$ along either $\delta$ or $\tau$ gives a symmetric monoidal category.
+    \end{enumerate}
+A \defn{twofold symmetric monoidal functor} of 2-fold monoidal categories is a morphism in $Cat_{/\mathbb{E}_*}$ between twofold symmetric monoidal categories that preserves locally coCartesian edges. For such a morphism $F:C^{\lplus,\rplus}\rightarrow D^{\underline{\oplus'},\overline{\oplus}'}$ we automatically have that the induced morphisms $C^{\lplus}\rightarrow D^{\lplus'}$ and $C^{\rplus}\rightarrow D^{\rplus'}$ are symmetric monoidal. We let the category of twofold symmetric monoidal categories $2SMonCat$ be the subcategory of $Cat_{/\mathbb{E}_*}$ consisting of twofold symmetric monoidal categories and 2-fold symmetric monoidal functors between them.
+\end{definition}
+
+\begin{remark}
+    The terminal 2-fold monoidal category is $id:E_*\rightarrow E_*$.
+\end{remark}
+
+\begin{remark}
+We would like to give a twofold version of the comonad $U'Env'$ of \cref{thm:haugseng-kock}. It is clear to us that this should be a comonad on the category $2SymMon/{\mathbb{E}^{\lplus,\rplus}}$, as we have an equivalence $Act(\mathbb{E}_*)\simeq \mathbb{E}^{\lplus,\rplus}$. We can certainly let $Act(E_*)$ be the full subcategory of $Fun(\Delta^1,E_*)$ spanned by active morphisms, let $s,t:Act(E_*)\rightarrow E_*$ be the functors corresponding to source and target, and form the pull-back
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBoBGAXVJADcBDAGwFcYkQBBAYxwAoAdfgFt6OABYAjCcACiAXwD6AKgCUIOaXSZc+QinIVqdJq3aCR4qbMVL1mkBmx4CRA8SMMWbRCADCAPWBBZjBYACdGLDAYIP4INBY4DUEIWhgIqJiUhOYkuTstJ10iMncaT1MfGTBaXl8VQODQ9Mjo2PjE5Li0jLbszvy5IxgoAHN4IlAAMzCIISQAJhocCCQDYy8zfjQsApAZuaQyEBW18pNvEAQaRnoJGEYABW1nPRAwrFGxHD2D+cQAMzLVaIYgaaazf5Ak4ghZDORAA
+\[\begin{tikzcd}
+{Env(C)^{\lplus,\rplus}} \arrow[d] \arrow[r] & {C^{\lplus,\rplus}} \arrow[d, "\pi"] \\
+Act(\mathbb{E}_*) \arrow[r, "s"']                                   & \mathbb{E}_*                                               
+\end{tikzcd}\] with the functor to $\mathbb{E}_*$ given by $t$. However, \cref{rmk:cocartesian-lift} suggests that this will be a coCartesian fibration, since the coCartesian lifts only used the inert-active factorisation system and the coCartesian lifts of inerts. This is not what we expect, so we are unsure how to proceed. A major goal of the project is to give a working envelope construction, or alternatively, a direct description of the desired subcategory of $2SymMon_{/{\mathbb{E}^{\lplus,\rplus}}}$ a la \cite{HaugsengKock}[2.4.6.].
+\end{remark}
+
+\begin{comment}
+Let $Act(E_*)$ be the full subcategory of $Fun(\Delta^1,E_*)$ spanned by active morphisms. Let $s,t:Act(E_*)\rightarrow E_*$ be the functors corresponding to source and target.
+
+\begin{definition}
+    The \defn{envelope} $Env(C)^{\oplus,\tensor}$ of a 2-fold monoidal category $p:C^{\oplus,\tensor}\rightarrow E_*$ is the pullback in $Cat_{/{E_*}}$ of $s$ along $p,$ with functor to $E_*$ given by $t,$ as in the following diagram. \todo{State instead why this *doesn't* work.!}
+
+    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAFEwaAKAYQEoAesAA6IiGmZxSYnDDBwIAJwC+IFaXSZc+QigCM5KrUYs2AQQDGObuwD6AKn7rNIDNjwEiZfcfrNWRBBeYTEJKRkROQVlNQ0tD10iQ19qfzMg+wd1YxgoAHN4IlAAMyUIAFskMhAcCCR9eJAyyurqOqQAJiaWqsRDWvrEAGY000CQBB7yvs72odGTALY0HJUgA
+\[\begin{tikzcd}
+{Env(C)^{\oplus,\tensor}} \arrow[r]\pullback \arrow[d] & Act(E_*) \arrow[d, "s"] \\
+{C^{\oplus,\tensor}} \arrow[r, "p"]           & E_*                    
+\end{tikzcd}\]
+\end{definition}
+
+\begin{proposition}
+    The envelope $t:Env(C)^{\oplus, \tensor}\rightarrow E_*$ corresponding to a 2-fold monoidal category $p:C^{\oplus,\tensor}\rightarrow E_*$ is a 2-fold monoidal category.
+\end{proposition}
+\begin{proof}
+\begin{enumerate}
+    \item (informal) Consider $(X,\alpha: \pi(X)\rightarrow G)$ lying over $G$ and \newline $\psi:G\rightarrow H$ in $E_*$. 
+    \item 
+    \item 
+    \item 
+\end{enumerate}
+\end{proof}
+
+There is a canonical $2-$fold monoidal functor $\epsilon:Env(C)^{\oplus,\tensor}\rightarrow C^{\oplus,\tensor}$ over $E_*$ given by 
+
+\end{comment}
